@@ -1,1 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Recipe Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="text-5xl font-extrabold text-center">
+        Weekly Recipe Generator
+      </h1>
+    </header>
 
+    <main>
+      <div class="grid w-full gap-6 md:grid-cols-2 p-5 m-5">
+        <section class="containter col-6 text-lg text-center" id="instructions">
+          <h2 class="text-4xl font-extrabold">
+            Welcome to the Weekly Recipe Generator!
+          </h2>
+          <p>
+            This application will generate a random recipe for you based on the
+            criteria you choose.
+          </p>
+        </section>
+        <form
+          id="criteria"
+          action=""
+          class="col-6 text-lg text-center flex flex-col jusitfy-center items-center"
+        >
+          <h2 class="text-4xl font-extrabold">Choose Desired Criteria Here</h2>
+          <label for="meal-type">Meal Type:</label>
+          <div class="btn-group flex">
+            <button
+              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+              Breakfast
+            </button>
+            <button
+              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+              Lunch
+            </button>
+            <button
+              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+              Dinner
+            </button>
+          </div>
+          <label for="cuisine-type">Cuisine Type:</label>
+          <div class="btn-group flexr">
+            <button
+              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+              Italian
+            </button>
+            <button
+              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+              Mexican
+            </button>
+            <button
+              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+              Indian
+            </button>
+          </div>
+          <label for="dietary-restrictions">Dietary Restrictions:</label>
+          <div class="btn-group flex">
+            <button
+              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+              Vegetarian
+            </button>
+            <button
+              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+              Vegan
+            </button>
+            <button
+              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+              Gluten-Free
+            </button>
+          </div>
+          <label for="difficulty-level">Difficulty Level</label>
+          <div class="btn-group flex">
+            <button
+              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+              Easy
+            </button>
+            <button
+              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+              Medium
+            </button>
+            <button
+              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+              Hard
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+  <script src="./assets/js/script.js"></script>
+</html>
