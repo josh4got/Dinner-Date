@@ -1,3 +1,5 @@
+
+var apiKey = "b48a85cecf0a47eba4b20401a0ee0e14";
 var apiKey = 'b48a85cecf0a47eba4b20401a0ee0e14';
 var button = document.getElementById('generate');
 var recipeList = document.getElementById('recipes');

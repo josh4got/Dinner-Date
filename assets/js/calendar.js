@@ -1,3 +1,2 @@
-
-var icsAddress = document.getElementById('address')
-console.log(icsAddress)
+// var icsAddress = document.getElementById('address')
+// console.log(icsAddress)
