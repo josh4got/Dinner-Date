@@ -31,24 +31,6 @@
           class="col-6 text-lg text-center flex flex-col jusitfy-center items-center"
         >
           <h2 class="text-4xl font-extrabold">Choose Desired Criteria Here</h2>
-          <label for="meal-type">Meal Type:</label>
-          <div class="btn-group flex">
-            <button
-              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-            >
-              Breakfast
-            </button>
-            <button
-              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-            >
-              Lunch
-            </button>
-            <button
-              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-            >
-              Dinner
-            </button>
-          </div>
           <label for="cuisine-type">Cuisine Type:</label>
           <div class="btn-group flexr">
             <button
@@ -103,15 +85,15 @@
               Hard
             </button>
           </div>
-          <label for="difficulty-level">Would you like a Cocktail?</label>
-          <div class="btn-group flex">
+          <label for="Cocktail?">Would you like a Cocktail?</label>
+          <div id="cocktail" class="btn-group flex">
             <button
-              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+              class="btnC btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             >
               Yes
             </button>
             <button
-              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+              class="btnC btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             >
               No
             </button>
@@ -121,6 +103,7 @@
           class="col-6 text-lg text-center flex flex-col jusitfy-center items-center p-5 m-5"
         >
           <button
+            id="generate"
             class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-large rounded-lg text-md px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
           >
             Generate Recipes
@@ -130,4 +113,5 @@
     </main>
   </body>
   <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/BIGBOISCRIPTING.js"></script>
 </html>
