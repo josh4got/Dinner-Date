@@ -1,5 +1,6 @@
 var apiKey = 'b48a85cecf0a47eba4b20401a0ee0e14';
-var button = document.getElementById('btn-primary');
+var button = document.getElementById('generate');
+var recipeList = document.getElementById('recipes');
 
 //cuisine type button variables
 var italianBtn = document.querySelector("[data-cuisinetype='italian']");
@@ -78,7 +79,7 @@ hardBtn.addEventListener('click', function(event){
 function generateRecipe(event){
     console.log("Hello");
     event.preventDefault();
-    var urlRequest = `https://api.spoonacular.com/recipes/random?number=1&type=breakfast&cuisine=${cuisineType}&readyInMinutes=${difficultyLevel}&diet=${dietType}&apiKey=${apiKey}`;
+    var urlRequest = `https://api.spoonacular.com/recipes/random?number=3&type=breakfast&cuisine=${cuisineType}&readyInMinutes=${difficultyLevel}&diet=${dietType}&apiKey=${apiKey}`;
 
     fetch(urlRequest,{
         headers: {
@@ -91,15 +92,24 @@ function generateRecipe(event){
         
       .then(function (data) {
         console.log(data);
-        var recipeList = document.getElementById('recipes');
-        var recipe1 = document.createElement('div');
+        for (var i = 0; i < data.recipes.length; i++){
+          
+          var recipeName = document.createElement('h3');
+          var servings = document.createElement('p');
+          var timeToPrep = document.createElement('p');
 
-        var recipeLink = document.createElement('a');
-        recipeLink.href = data.recipes[0].spoonacularSourceUrl;
-        recipeLink.innerText = data.recipes[0].title;
-        recipe1.appendChild(recipeLink);
-        console.log(recipe1);
-        recipeList.appendChild(recipe1);
+
+          // recipeName.href = data.recipes[i].spoonacularSourceUrl;
+          recipeName.innerText = ("Title: " + data.recipes[i].title);
+          timeToPrep.innerText = ("Time to Prepare: " + data.recipes[i].readyInMinutes);
+          servings.innerText = ("Number of Servings: " + data.recipes[i].servings);
+      
+
+          recipeList.appendChild(recipeName);
+          console.log(recipeName);
+          recipeList.appendChild(timeToPrep);
+          recipeList.appendChild(servings);
+        }
       });
      }
     
