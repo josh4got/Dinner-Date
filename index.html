@@ -6,7 +6,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
   </head>
-  <body>
+  <body id="Welcome">
     <header>
       <h1 class="text-5xl font-extrabold text-center">
         Weekly Recipe Generator
@@ -85,17 +85,13 @@
               Hard
             </button>
           </div>
-          <label for="Cocktail?">Would you like a Cocktail?</label>
+          <label for="Cocktail?">Happy Hour?</label>
           <div id="cocktail" class="btn-group flex">
             <button
+              id="yes"
               class="btnC btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             >
-              Yes
-            </button>
-            <button
-              class="btnC btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-            >
-              No
+              Click here to add a bonus Cocktail Recipe!
             </button>
           </div>
         </form>
