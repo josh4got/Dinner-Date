@@ -1,15 +1,52 @@
-var apiKey = '1ba08610419e4c7a9791d166c28d523e';
-var button = document.getElementById('generate');
+
+var apiKey = "b48a85cecf0a47eba4b20401a0ee0e14";
+var button = document.getElementById("generate");
+var dietType = "";
+var difficultyLevel = "";
+var cuisineType = "";
 
 function setPageActions() {
   let page = document.body.id;
   switch (page) {
     case "Welcome":
-      // Perform actions for the index page
+      // set variables for the buttons
       let cocktail = document.querySelector("#yes");
       let nodrink = document.querySelector("#no");
+      // set variables for the url
+      //cuisine type button variables
+      var italianBtn = document.querySelector("[data-cuisinetype='italian']");
+      var mexicanBtn = document.querySelector("[data-cuisinetype='mexican']");
+      var indianBtn = document.querySelector("[data-cuisinetype='indian']");
+      // diet type button variables
+      var vegetarianBtn = document.querySelector(
+        "[data-diettype='vegetarian']"
+      );
+      var veganBtn = document.querySelector("[data-diettype='vegan']");
+      var glutenFreeBtn = document.querySelector(
+        "[data-diettype='gluten-free']"
+      );
+      // difficulty level button variables
+      var easyBtn = document.querySelector("[data-difficultlevel='easy']");
+      var mediumBtn = document.querySelector("[data-difficultlevel='medium']");
+      var hardBtn = document.querySelector("[data-difficultlevel='hard']");
+      // sets the cuisine type
+      italianBtn.addEventListener("click", italian);
+      mexicanBtn.addEventListener("click", mexican);
+      indianBtn.addEventListener("click", indian);
+      // sets the diet type
+      vegetarianBtn.addEventListener("click", vegetarian);
+      veganBtn.addEventListener("click", vegan);
+      glutenFreeBtn.addEventListener("click", glutenfree);
+      // sets difficulty level
+      easyBtn.addEventListener("click", easybtn);
+      mediumBtn.addEventListener("click", mediumbtn);
+      hardBtn.addEventListener("click", hardbtn);
+      // takes user to the next bage
+      button.addEventListener("click", nextpage);
+      // event listeners for the cocktail buttons
       cocktail.addEventListener("click", getcocktail);
       nodrink.addEventListener("click", nococktail);
+
 
       //cuisine type button variables
       var italianBtn = document.querySelector("[data-cuisinetype='italian']");
@@ -108,105 +145,140 @@ function setPageActions() {
           button.addEventListener('click', generateRecipe);
               console.log("You are on the index page.");
               break;
+
+      console.log("You are on the index page.");
+      break;
+
     case "calendar":
-      // Perform actions for the calendar page
       let storedCocktail = localStorage.getItem("cocktail");
-      console.log(storedCocktail);
+
+      // Append a random cocktail recipe to the page
       if (storedCocktail && storedCocktail.length > 0) {
         appendRandomCocktailRecipe();
       }
+      generateRecipe();
+      displayRecipe();
+      console.log(storedCocktail);
       console.log("You are on the calendar page.");
       break;
     default:
       console.log("Unknown page.");
   }
 }
+function nextpage() {
+  window.location.href = "calendar.html";
+}
+function generateRecipe() {
+  console.log("Hello");
+  // event.preventDefault();
+  var urlRequest = `https://api.spoonacular.com/recipes/random?number=3&type=breakfast&cuisine=${cuisineType}&readyInMinutes=${difficultyLevel}&diet=${dietType}&apiKey=${apiKey}`;
 
+  fetch(urlRequest, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(function (response) {
+      return response.json();
+    })
 
-
+    .then(function (data) {
+      console.log(data);
+      window.location.href = "calendar.html";
+      displayRecipe(data);
+    });
+}
+// functions for cuisine type
+function italian(event) {
+  event.preventDefault();
+  console.log("italian");
+  cuisineType = "Italian";
+}
+function mexican(event) {
+  event.preventDefault();
+  console.log("mexican");
+  cuisineType = "Mexican";
+}
+function indian(event) {
+  event.preventDefault();
+  console.log("indian");
+  cuisineType = "Indian";
+}
+// functions for diet type
+function vegetarian(event) {
+  event.preventDefault();
+  console.log("vegetarian");
+  dietType = "Vegetarian";
+}
+function vegan(event) {
+  event.preventDefault();
+  console.log("vegan");
+  dietType = "Vegan";
+}
+function glutenfree(event) {
+  event.preventDefault();
+  console.log("gluten free");
+  dietType = "GlutenFree";
+}
+// funtions for difficulty level
+function easybtn(event) {
+  event.preventDefault();
+  console.log("20");
+  difficultyLevel = "20";
+}
+function mediumbtn(event) {
+  event.preventDefault();
+  console.log("40");
+  difficultyLevel = "45";
+}
+function hardbtn(event) {
+  event.preventDefault();
+  console.log("60");
+  difficultyLevel = "60";
+}
 // var recipeList = document.getElementById('recipes');
 
+// .then(function (data) {
+//   console.log(data);
+//   for (var i = 0; i < data.recipes.length; i++){
 
+//     var recipeName = document.createElement('a');
+//     var servings = document.createElement('p');
+//     var timeToPrep = document.createElement('p');
 
+//     recipeName.href = data.recipes[i].spoonacularSourceUrl;
+//     recipeName.innerText = ("Title: " + data.recipes[i].title);
+//     timeToPrep.innerText = ("Time to Prepare: " + data.recipes[i].readyInMinutes);
+//     servings.innerText = ("Number of Servings: " + data.recipes[i].servings);
 
+//     recipeList.appendChild(recipeName);
+//     console.log(recipeName);
+//     recipeList.appendChild(timeToPrep);
+//     recipeList.appendChild(servings);
+//   }
+// });
 
+function displayRecipe(data) {
+  var recipeContainer = document.getElementById("recipes");
+  console.log("why");
+  recipeContainer.appendChild = "hello";
 
-        
-      // .then(function (data) {
-      //   console.log(data);
-      //   for (var i = 0; i < data.recipes.length; i++){
-          
-      //     var recipeName = document.createElement('a');
-      //     var servings = document.createElement('p');
-      //     var timeToPrep = document.createElement('p');
+  for (var i = 0; i < data.recipes.length; i++) {
+    var recipeName = document.createElement("a");
+    var servings = document.createElement("p");
+    var timeToPrep = document.createElement("p");
 
+    recipeName.href = data.recipes[i].spoonacularSourceUrl;
+    recipeName.innerText = "Title: " + data.recipes[i].title;
+    timeToPrep.innerText = "Time to Prepare: " + data.recipes[i].readyInMinutes;
+    servings.innerText = "Number of Servings: " + data.recipes[i].servings;
 
-         
-      //     recipeName.href = data.recipes[i].spoonacularSourceUrl;
-      //     recipeName.innerText = ("Title: " + data.recipes[i].title);
-      //     timeToPrep.innerText = ("Time to Prepare: " + data.recipes[i].readyInMinutes);
-      //     servings.innerText = ("Number of Servings: " + data.recipes[i].servings);
-      
-
-      //     recipeList.appendChild(recipeName);
-      //     console.log(recipeName);
-      //     recipeList.appendChild(timeToPrep);
-      //     recipeList.appendChild(servings);
-      //   }
-      // });
-     
-    
-
-
-
-
-
-
-
-
-function displayRecipe(){
-    var recipeContainer = document.getElementById('recipes');
-    console.log('why');
-    recipeContainer.appendChild = 'hello';
-   
-  
-    // for (var i = 0; i < data.recipes.length; i++){
-      
-    //   var recipeName = document.createElement('a');
-    //   var servings = document.createElement('p');
-    //   var timeToPrep = document.createElement('p');
-  
-  
-     
-    //   recipeName.href = data.recipes[i].spoonacularSourceUrl;
-    //   recipeName.innerText = ("Title: " + data.recipes[i].title);
-    //   timeToPrep.innerText = ("Time to Prepare: " + data.recipes[i].readyInMinutes);
-    //   servings.innerText = ("Number of Servings: " + data.recipes[i].servings);
-    
-  
-  
-    //   recipeContainer.appendChild(recipeName);
-    //   console.log(recipeName);
-    //   recipeContainer.appendChild(timeToPrep);
-    //   recipeContainer.appendChild(servings);
-    };
-
-
-
-
-
-
-// document.getElementById("generate").onclick = function() {
-//   generateRecipe();
-//   location.href = "calendar.html";
- 
-// };
-
-
-
-
-
-
+    recipeContainer.appendChild(recipeName);
+    console.log(recipeName);
+    recipeContainer.appendChild(timeToPrep);
+    recipeContainer.appendChild(servings);
+  }
+}
 
 // Josh .js
 
@@ -262,12 +334,7 @@ function displayRecipe(){
 //     });
 // }
 
-
 window.addEventListener("load", setPageActions);
-
-
-
-
 
 // Cheryl .js
 
