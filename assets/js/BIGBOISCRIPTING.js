@@ -7,6 +7,11 @@ function getcocktail(event) {
   console.log(localStorage);
   console.log(newEL);
 }
+function nococktail(event) {
+  event.preventDefault();
+  localStorage.removeItem("cocktail");
+  console.log("removed cocktail");
+}
 
 function getIngredients(recipe) {
   const ingredients = [];
@@ -55,7 +60,9 @@ function setPageActions() {
     case "Welcome":
       // Perform actions for the index page
       let cocktail = document.querySelector("#yes");
+      let nodrink = document.querySelector("#no");
       cocktail.addEventListener("click", getcocktail);
+      nodrink.addEventListener("click", nococktail);
       console.log("You are on the index page.");
       break;
     case "calendar":
