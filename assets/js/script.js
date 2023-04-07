@@ -1,8 +1,5 @@
-var apiKey = 'b48a85cecf0a47eba4b20401a0ee0e14';
+var apiKey = '1ba08610419e4c7a9791d166c28d523e';
 var button = document.getElementById('generate');
-
-
-
 
 function setPageActions() {
   let page = document.body.id;
@@ -15,102 +12,102 @@ function setPageActions() {
       nodrink.addEventListener("click", nococktail);
 
       //cuisine type button variables
-var italianBtn = document.querySelector("[data-cuisinetype='italian']");
-var mexicanBtn = document.querySelector("[data-cuisinetype='mexican']");
-var indianBtn = document.querySelector("[data-cuisinetype='indian']");
+      var italianBtn = document.querySelector("[data-cuisinetype='italian']");
+      var mexicanBtn = document.querySelector("[data-cuisinetype='mexican']");
+      var indianBtn = document.querySelector("[data-cuisinetype='indian']");
 
-// diet type button variables
-var vegetarianBtn = document.querySelector("[data-diettype='vegetarian']");
-var veganBtn = document.querySelector("[data-diettype='vegan']");
-var glutenFreeBtn = document.querySelector("[data-diettype='gluten-free']");
+      // diet type button variables
+      var vegetarianBtn = document.querySelector("[data-diettype='vegetarian']");
+      var veganBtn = document.querySelector("[data-diettype='vegan']");
+      var glutenFreeBtn = document.querySelector("[data-diettype='gluten-free']");
 
-// difficulty level button variables
-var easyBtn = document.querySelector("[data-difficultlevel='easy']");
-var mediumBtn = document.querySelector("[data-difficultlevel='medium']");
-var hardBtn = document.querySelector("[data-difficultlevel='hard']");
-      // sets the cuisine type to null
-var cuisineType = '';
-// sets cuisine type variable to italian if the italian button is clicked
-italianBtn.addEventListener('click', function(event){
-    event.preventDefault();
-    console.log("italian");
-    cuisineType = "Italian";
-});
-// sets cuisine type variable to mexican if the mexican button is clicked
-mexicanBtn.addEventListener('click', function(event){
-    event.preventDefault();
-    console.log("mexican");
-    cuisineType = "Mexican";
-});
-// sets cuisine type variable to indian if the indian button is clicked
-indianBtn.addEventListener('click', function(event){
-    event.preventDefault();
-    console.log("indian");
-    cuisineType = "Indian";
-});
+      // difficulty level button variables
+      var easyBtn = document.querySelector("[data-difficultlevel='easy']");
+      var mediumBtn = document.querySelector("[data-difficultlevel='medium']");
+      var hardBtn = document.querySelector("[data-difficultlevel='hard']");
+            // sets the cuisine type to null
+      var cuisineType = '';
+      // sets cuisine type variable to italian if the italian button is clicked
+      italianBtn.addEventListener('click', function(event){
+          event.preventDefault();
+          console.log("italian");
+          cuisineType = "Italian";
+      });
+      // sets cuisine type variable to mexican if the mexican button is clicked
+      mexicanBtn.addEventListener('click', function(event){
+          event.preventDefault();
+          console.log("mexican");
+          cuisineType = "Mexican";
+      });
+        // sets cuisine type variable to indian if the indian button is clicked
+        indianBtn.addEventListener('click', function(event){
+            event.preventDefault();
+            console.log("indian");
+            cuisineType = "Indian";
+        });
 
-var dietType = '';
+        var dietType = '';
 
-vegetarianBtn.addEventListener('click', function(event){
-    event.preventDefault();
-    console.log("vegetarian");
-    dietType = "Vegetarian";
-});
+        vegetarianBtn.addEventListener('click', function(event){
+            event.preventDefault();
+            console.log("vegetarian");
+            dietType = "Vegetarian";
+        });
 
-veganBtn.addEventListener('click', function(event){
-    event.preventDefault();
-    console.log("vegan");
-    dietType = "Vegan";
-});
+        veganBtn.addEventListener('click', function(event){
+            event.preventDefault();
+            console.log("vegan");
+            dietType = "Vegan";
+        });
 
-glutenFreeBtn.addEventListener('click', function(event){
-    event.preventDefault();
-    console.log("gluten free");
-    dietType = "GlutenFree";
-});
+        glutenFreeBtn.addEventListener('click', function(event){
+            event.preventDefault();
+            console.log("gluten free");
+            dietType = "GlutenFree";
+        });
 
-var difficultyLevel = '';
+        var difficultyLevel = '';
 
-easyBtn.addEventListener('click', function(event){
-    event.preventDefault();
-    console.log("20");
-    difficultyLevel = "<20";
-});
+        easyBtn.addEventListener('click', function(event){
+            event.preventDefault();
+            console.log("20");
+            difficultyLevel = "<20";
+        });
 
-mediumBtn.addEventListener('click', function(event){
-    event.preventDefault();
-    console.log("40");
-    difficultyLevel = "<40";
-});
+        mediumBtn.addEventListener('click', function(event){
+            event.preventDefault();
+            console.log("40");
+            difficultyLevel = "<40";
+        });
 
-hardBtn.addEventListener('click', function(event){
-    event.preventDefault();
-    console.log("60");
-    difficultyLevel = ">60";
-});
-function generateRecipe(){
-  console.log("Hello");
-  // event.preventDefault();
-  var urlRequest = `https://api.spoonacular.com/recipes/random?number=3&type=breakfast&cuisine=${cuisineType}&readyInMinutes=${difficultyLevel}&diet=${dietType}&apiKey=${apiKey}`;
+        hardBtn.addEventListener('click', function(event){
+            event.preventDefault();
+            console.log("60");
+            difficultyLevel = ">60";
+        });
+        function generateRecipe(){
+          console.log("Hello");
+          // event.preventDefault();
+          var urlRequest = `https://api.spoonacular.com/recipes/random?number=3&type=breakfast&cuisine=${cuisineType}&readyInMinutes=${difficultyLevel}&diet=${dietType}&apiKey=${apiKey}`;
 
-  fetch(urlRequest,{
-      headers: {
-          'Content-Type': 'application/json'
-      }
-  })
-    .then(function (response) {
-      return response.json();
-    })
+          fetch(urlRequest,{
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          })
+            .then(function (response) {
+              return response.json();
+            })
 
-    .then(function (data){
-      console.log(data)
-      window.location.href = 'calendar.html';
-      displayRecipe(data);
-    })
-  }
-  button.addEventListener('click', generateRecipe);
-      console.log("You are on the index page.");
-      break;
+            .then(function (data){
+              console.log(data)
+              window.location.href = 'calendar.html';
+              displayRecipe(data);
+            })
+          }
+          button.addEventListener('click', generateRecipe);
+              console.log("You are on the index page.");
+              break;
     case "calendar":
       // Perform actions for the calendar page
       let storedCocktail = localStorage.getItem("cocktail");
@@ -213,57 +210,57 @@ function displayRecipe(){
 
 // Josh .js
 
-let newcocktail = [];
-function getcocktail(event) {
-  event.preventDefault();
-  let newEL = event.target.id;
-  localStorage.setItem("cocktail", newEL);
-  console.log(localStorage);
-  console.log(newEL);
-}
-function nococktail(event) {
-  event.preventDefault();
-  localStorage.removeItem("cocktail");
-  console.log("removed cocktail");
-}
-function getIngredients(recipe) {
-  const ingredients = [];
-  for (let i = 1; i <= 15; i++) {
-    const ingredient = recipe[`strIngredient${i}`];
-    const measure = recipe[`strMeasure${i}`];
-    if (ingredient && measure) {
-      ingredients.push(`<li>${measure} ${ingredient}</li>`);
-    } else if (ingredient) {
-      ingredients.push(`<li>${ingredient}</li>`);
-    }
-  }
-  return ingredients.join("");
-}
-function appendRandomCocktailRecipe() {
-  const apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
-  fetch(apiUrl)
-    .then((response) => response.json())
-    .then(({ drinks: [recipe] }) => {
-      const ingredients = getIngredients(recipe);
-      const recipeHtml = `
-        <div class="card h-24 vw-full flex m-5 p-3">
-          <h2 class="card-title">${recipe.strDrink}</h2>
-          <img src="${recipe.strDrinkThumb}" alt="${recipe.strDrink}" class="card-img">
-          <div class="card-body">
-            <h3 class="card-subtitle">Ingredients:</h3>
-            <ul class="card-list">${ingredients}</ul>
-            <h3 class="card-subtitle">Instructions:</h3>
-            <p class="card-text">${recipe.strInstructions}</p>
-          </div>
-        </div>
-      `;
-      document
-        .querySelector("#recipes")
-        .appendChild(
-          document.createRange().createContextualFragment(recipeHtml)
-        );
-    });
-}
+// let newcocktail = [];
+// function getcocktail(event) {
+//   event.preventDefault();
+//   let newEL = event.target.id;
+//   localStorage.setItem("cocktail", newEL);
+//   console.log(localStorage);
+//   console.log(newEL);
+// }
+// function nococktail(event) {
+//   event.preventDefault();
+//   localStorage.removeItem("cocktail");
+//   console.log("removed cocktail");
+// }
+// function getIngredients(recipe) {
+//   const ingredients = [];
+//   for (let i = 1; i <= 15; i++) {
+//     const ingredient = recipe[`strIngredient${i}`];
+//     const measure = recipe[`strMeasure${i}`];
+//     if (ingredient && measure) {
+//       ingredients.push(`<li>${measure} ${ingredient}</li>`);
+//     } else if (ingredient) {
+//       ingredients.push(`<li>${ingredient}</li>`);
+//     }
+//   }
+//   return ingredients.join("");
+// }
+// function appendRandomCocktailRecipe() {
+//   const apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
+//   fetch(apiUrl)
+//     .then((response) => response.json())
+//     .then(({ drinks: [recipe] }) => {
+//       const ingredients = getIngredients(recipe);
+//       const recipeHtml = `
+//         <div class="card h-24 vw-full flex m-5 p-3">
+//           <h2 class="card-title">${recipe.strDrink}</h2>
+//           <img src="${recipe.strDrinkThumb}" alt="${recipe.strDrink}" class="card-img">
+//           <div class="card-body">
+//             <h3 class="card-subtitle">Ingredients:</h3>
+//             <ul class="card-list">${ingredients}</ul>
+//             <h3 class="card-subtitle">Instructions:</h3>
+//             <p class="card-text">${recipe.strInstructions}</p>
+//           </div>
+//         </div>
+//       `;
+//       document
+//         .querySelector("#recipes")
+//         .appendChild(
+//           document.createRange().createContextualFragment(recipeHtml)
+//         );
+//     });
+// }
 
 
 window.addEventListener("load", setPageActions);
