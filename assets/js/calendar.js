@@ -44,8 +44,8 @@ function displayRecipe(recipeObject) {
     dates.innerText= now.add(i, 'day').format('dddd MMMM D');
     summary.innerHTML = recipeObject.recipes[i].summary.split('.')[0] + '.';
 
-    prepTime.innerText = recipeObject.recipes[i].readyInMinutes;
-    servings.innerText = recipeObject.recipes[i].servings;
+    prepTime.innerText = "Prep time: " + recipeObject.recipes[i].readyInMinutes + " minutes";
+    servings.innerText = "Serves: " + recipeObject.recipes[i].servings;
 
     recipeContainerEl.appendChild(dates);
     recipeContainerEl.appendChild(recipeName);
@@ -86,5 +86,3 @@ END:VCALENDAR`
 }
 
 var dtStamp = now.format('YYYYMMDD');
-
-
