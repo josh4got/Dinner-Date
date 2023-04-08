@@ -1,4 +1,4 @@
-var apiKey = "b48a85cecf0a47eba4b20401a0ee0e14";
+var apiKey = "74ced1ca80754924bb27377f1e6099c9";
 var button = document.getElementById("generate");
 var dietType = "";
 var difficultyLevel = "";
@@ -55,7 +55,6 @@ function setPageActions() {
         appendRandomCocktailRecipe();
       }
       generateRecipe();
-      displayRecipe();
       console.log(storedCocktail);
       console.log("You are on the calendar page.");
       break;
@@ -66,9 +65,9 @@ function setPageActions() {
 function nextpage() {
   window.location.href = "calendar.html";
 }
-function generateRecipe() {
+function generateRecipe(event) {
+  event.preventDefault();
   console.log("Hello");
-  // event.preventDefault();
   var urlRequest = `https://api.spoonacular.com/recipes/random?number=3&type=breakfast&cuisine=${cuisineType}&readyInMinutes=${difficultyLevel}&diet=${dietType}&apiKey=${apiKey}`;
 
   fetch(urlRequest, {
@@ -82,7 +81,6 @@ function generateRecipe() {
 
     .then(function (data) {
       console.log(data);
-      window.location.href = "calendar.html";
       displayRecipe(data);
     });
 }
@@ -134,32 +132,10 @@ function hardbtn(event) {
   console.log("60");
   difficultyLevel = "60";
 }
-// var recipeList = document.getElementById('recipes');
-
-// .then(function (data) {
-//   console.log(data);
-//   for (var i = 0; i < data.recipes.length; i++){
-
-//     var recipeName = document.createElement('a');
-//     var servings = document.createElement('p');
-//     var timeToPrep = document.createElement('p');
-
-//     recipeName.href = data.recipes[i].spoonacularSourceUrl;
-//     recipeName.innerText = ("Title: " + data.recipes[i].title);
-//     timeToPrep.innerText = ("Time to Prepare: " + data.recipes[i].readyInMinutes);
-//     servings.innerText = ("Number of Servings: " + data.recipes[i].servings);
-
-//     recipeList.appendChild(recipeName);
-//     console.log(recipeName);
-//     recipeList.appendChild(timeToPrep);
-//     recipeList.appendChild(servings);
-//   }
-// });
 
 function displayRecipe(data) {
   var recipeContainer = document.getElementById("recipes");
   console.log("why");
-  recipeContainer.appendChild = "hello";
 
   for (var i = 0; i < data.recipes.length; i++) {
     var recipeName = document.createElement("a");
