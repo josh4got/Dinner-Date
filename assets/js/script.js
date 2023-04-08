@@ -1,10 +1,14 @@
 var apiKey = "74ced1ca80754924bb27377f1e6099c9";
 var button = document.getElementById("generate");
+var now = dayjs();
+var dtStamp = now.format("YYYYMMDD");
 var dietType = "";
 var difficultyLevel = "";
 var cuisineType = "";
+var newcocktail = [];
 
-function setPageActions() {
+function setPageActions(event) {
+  event.preventDefault();
   let page = document.body.id;
   switch (page) {
     case "Welcome":
@@ -40,125 +44,19 @@ function setPageActions() {
       easyBtn.addEventListener("click", easybtn);
       mediumBtn.addEventListener("click", mediumbtn);
       hardBtn.addEventListener("click", hardbtn);
-      // takes user to the next bage
+      // takes user to the next page
       button.addEventListener("click", nextpage);
       // event listeners for the cocktail buttons
       cocktail.addEventListener("click", getcocktail);
       nodrink.addEventListener("click", nococktail);
-
-      //cuisine type button variables
-      var italianBtn = document.querySelector("[data-cuisinetype='italian']");
-      var mexicanBtn = document.querySelector("[data-cuisinetype='mexican']");
-      var indianBtn = document.querySelector("[data-cuisinetype='indian']");
-
-      // diet type button variables
-      var vegetarianBtn = document.querySelector(
-        "[data-diettype='vegetarian']"
-      );
-      var veganBtn = document.querySelector("[data-diettype='vegan']");
-      var glutenFreeBtn = document.querySelector(
-        "[data-diettype='gluten-free']"
-      );
-
-      // difficulty level button variables
-      var easyBtn = document.querySelector("[data-difficultlevel='easy']");
-      var mediumBtn = document.querySelector("[data-difficultlevel='medium']");
-      var hardBtn = document.querySelector("[data-difficultlevel='hard']");
-      // sets the cuisine type to null
-      var cuisineType = "";
-      // sets cuisine type variable to italian if the italian button is clicked
-      italianBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        console.log("italian");
-        cuisineType = "Italian";
-      });
-      // sets cuisine type variable to mexican if the mexican button is clicked
-      mexicanBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        console.log("mexican");
-        cuisineType = "Mexican";
-      });
-      // sets cuisine type variable to indian if the indian button is clicked
-      indianBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        console.log("indian");
-        cuisineType = "Indian";
-      });
-
-      var dietType = "";
-
-      vegetarianBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        console.log("vegetarian");
-        dietType = "Vegetarian";
-      });
-
-      veganBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        console.log("vegan");
-        dietType = "Vegan";
-      });
-
-      glutenFreeBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        console.log("gluten free");
-        dietType = "GlutenFree";
-      });
-
-      var difficultyLevel = "";
-
-      easyBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        console.log("20");
-        difficultyLevel = "<20";
-      });
-
-      mediumBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        console.log("40");
-        difficultyLevel = "<40";
-      });
-
-      hardBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        console.log("60");
-        difficultyLevel = ">60";
-      });
-      function generateRecipe() {
-        console.log("Hello");
-        // event.preventDefault();
-        var urlRequest = `https://api.spoonacular.com/recipes/random?number=3&type=breakfast&cuisine=${cuisineType}&readyInMinutes=${difficultyLevel}&diet=${dietType}&apiKey=${apiKey}`;
-
-        fetch(urlRequest, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then(function (response) {
-            return response.json();
-          })
-
-          .then(function (data) {
-            console.log(data);
-            window.location.href = "calendar.html";
-            displayRecipe(data);
-          });
-      }
-      button.addEventListener("click", generateRecipe);
-      console.log("You are on the index page.");
-      break;
-
       console.log("You are on the index page.");
       break;
 
     case "calendar":
-      let storedCocktail = localStorage.getItem("cocktail");
-
+      var storedCocktail = localStorage.getItem("cocktail");
       // Append a random cocktail recipe to the page
-      if (storedCocktail && storedCocktail.length > 0) {
-        appendRandomCocktailRecipe();
-      }
-      generateRecipe();
+
+      displayCaledar(event);
       console.log(storedCocktail);
       console.log("You are on the calendar page.");
       break;
@@ -166,13 +64,16 @@ function setPageActions() {
       console.log("Unknown page.");
   }
 }
-function nextpage() {
-  window.location.href = "calendar.html";
+function displayCaledar(event) {
+  var storedCocktail = localStorage.getItem("cocktail");
+  generateRecipe(event);
+  if (storedCocktail && storedCocktail.length > 0) {
+    appendRandomCocktailRecipe(event);
+  }
 }
-function generateRecipe(event) {
-  event.preventDefault();
+function generateRecipe() {
   console.log("Hello");
-  var urlRequest = `https://api.spoonacular.com/recipes/random?number=3&type=breakfast&cuisine=${cuisineType}&readyInMinutes=${difficultyLevel}&diet=${dietType}&apiKey=${apiKey}`;
+  var urlRequest = `https://api.spoonacular.com/recipes/random?number=1&type=breakfast&cuisine=${cuisineType}&readyInMinutes=${difficultyLevel}&diet=${dietType}&apiKey=${apiKey}`;
 
   fetch(urlRequest, {
     headers: {
@@ -187,6 +88,9 @@ function generateRecipe(event) {
       console.log(data);
       displayRecipe(data);
     });
+}
+function nextpage() {
+  window.location.href = "calendar.html";
 }
 // functions for cuisine type
 function italian(event) {
@@ -237,116 +141,143 @@ function hardbtn(event) {
   difficultyLevel = "60";
 }
 
-function displayRecipe(data) {
-  var recipeContainer = document.getElementById("recipes");
-  console.log("why");
+function displayRecipe(recipeObject) {
+  var recipeContainerEl = document.getElementById("recipes");
+  for (let i = 0; i < recipeObject.recipes.length; i++) {
+    // create a div for each recipe card
+    var cardEl = document.createElement("div");
+    cardEl.className =
+      "w-1/6 h-auto bg-gray-200 mx-1 px-5 flex flex-col gap-1 items-center mb-0 relative";
+    // create a div for the date and add a data attribute for dtStamp
+    var dateEl = document.createElement("p");
+    dateEl.className = "text-lg font-bold mb-2";
+    var dtStamp = now.add(i, "day").format("YYYYMMDD");
+    dateEl.setAttribute("data-dtStamp", dtStamp);
+    dateEl.innerText = now.add(i, "day").format("dddd MMMM D");
 
-  for (var i = 0; i < data.recipes.length; i++) {
-    var recipeName = document.createElement("a");
-    var servings = document.createElement("p");
-    var timeToPrep = document.createElement("p");
+    // create a div for the recipe name and link to the recipe page
+    var nameEl = document.createElement("h3");
+    nameEl.className =
+      "text-xl font-bold mt-2 mb-1 flex justify-center items-center";
+    var recipeLink = recipeObject.recipes[i].spoonacularSourceUrl;
+    var nameLink = document.createElement("a");
+    nameLink.href = recipeLink;
+    nameLink.innerText = recipeObject.recipes[i].title;
+    nameLink.target = "_blank";
+    nameEl.appendChild(nameLink);
 
-    recipeName.href = data.recipes[i].spoonacularSourceUrl;
-    recipeName.innerText = "Title: " + data.recipes[i].title;
-    timeToPrep.innerText = "Time to Prepare: " + data.recipes[i].readyInMinutes;
-    servings.innerText = "Number of Servings: " + data.recipes[i].servings;
+    // create a div for the recipe summary
+    var summaryEl = document.createElement("p");
+    summaryEl.className = "text-sm mb-2";
+    summaryEl.innerHTML = recipeObject.recipes[i].summary.split(".")[0] + ".";
 
-    recipeContainer.appendChild(recipeName);
-    console.log(recipeName);
-    recipeContainer.appendChild(timeToPrep);
-    recipeContainer.appendChild(servings);
+    // create a div for the recipe prep time
+    var prepEl = document.createElement("p");
+    prepEl.className = "text-sm mb-2";
+    prepEl.innerHTML = `Prep time: ${recipeObject.recipes[i].readyInMinutes} minutes`;
+
+    // create a div for the recipe servings
+    var servingsEl = document.createElement("p");
+    servingsEl.className = "text-sm mb-2 pb-2";
+    servingsEl.innerHTML = `Servings: ${recipeObject.recipes[i].servings}`;
+
+    // create a button for adding to calendar
+    var calendarBtn = document.createElement("button");
+    calendarBtn.className =
+      "py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 absolute bottom-0 mt-2";
+    calendarBtn.innerText = "Add to calendar";
+
+    // add event listener to button for adding to calendar
+    calendarBtn.addEventListener("click", function () {
+      var calendarSummary = `Today's recipe: ${nameLink.innerText}`;
+      var calendarDescription = recipeLink;
+      var testIcs = ` 
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//hacksw/handcal//NONSGML v1.0//EN
+BEGIN:VEVENT
+UID:uid1@example.com
+DTSTAMP:${dtStamp}
+ORGANIZER;CN=DinnerDate:MAILTO:john.doe@example.com
+DTSTART:${dtStamp}T170000
+DTEND:${dtStamp}T180000
+SUMMARY:${calendarSummary}
+DESCRIPTION:${calendarDescription}
+END:VEVENT
+END:VCALENDAR`;
+
+      var calendarBtnHref = document.createElement("a");
+      calendarBtnHref.setAttribute(
+        "href",
+        "data:text/plain;charset=utf-8," + encodeURIComponent(testIcs)
+      );
+      calendarBtnHref.setAttribute("download", "DinnerDate.ics");
+      calendarBtnHref.click();
+    });
+
+    // append all elements to the recipe card div
+    cardEl.appendChild(dateEl);
+    cardEl.appendChild(nameEl);
+    cardEl.appendChild(summaryEl);
+    cardEl.appendChild(servingsEl);
+    cardEl.appendChild(prepEl);
+    cardEl.appendChild(calendarBtn);
+
+    recipeContainerEl.appendChild(cardEl);
   }
 }
 
 // Josh .js
-
-// let newcocktail = [];
-// function getcocktail(event) {
-//   event.preventDefault();
-//   let newEL = event.target.id;
-//   localStorage.setItem("cocktail", newEL);
-//   console.log(localStorage);
-//   console.log(newEL);
-// }
-// function nococktail(event) {
-//   event.preventDefault();
-//   localStorage.removeItem("cocktail");
-//   console.log("removed cocktail");
-// }
-// function getIngredients(recipe) {
-//   const ingredients = [];
-//   for (let i = 1; i <= 15; i++) {
-//     const ingredient = recipe[`strIngredient${i}`];
-//     const measure = recipe[`strMeasure${i}`];
-//     if (ingredient && measure) {
-//       ingredients.push(`<li>${measure} ${ingredient}</li>`);
-//     } else if (ingredient) {
-//       ingredients.push(`<li>${ingredient}</li>`);
-//     }
-//   }
-//   return ingredients.join("");
-// }
-// function appendRandomCocktailRecipe() {
-//   const apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
-//   fetch(apiUrl)
-//     .then((response) => response.json())
-//     .then(({ drinks: [recipe] }) => {
-//       const ingredients = getIngredients(recipe);
-//       const recipeHtml = `
-//         <div class="card h-24 vw-full flex m-5 p-3">
-//           <h2 class="card-title">${recipe.strDrink}</h2>
-//           <img src="${recipe.strDrinkThumb}" alt="${recipe.strDrink}" class="card-img">
-//           <div class="card-body">
-//             <h3 class="card-subtitle">Ingredients:</h3>
-//             <ul class="card-list">${ingredients}</ul>
-//             <h3 class="card-subtitle">Instructions:</h3>
-//             <p class="card-text">${recipe.strInstructions}</p>
-//           </div>
-//         </div>
-//       `;
-//       document
-//         .querySelector("#recipes")
-//         .appendChild(
-//           document.createRange().createContextualFragment(recipeHtml)
-//         );
-//     });
-// }
+function getcocktail(event) {
+  event.preventDefault();
+  let newEL = event.target.id;
+  localStorage.setItem("cocktail", newEL);
+  console.log(localStorage);
+  console.log(newEL);
+}
+function nococktail(event) {
+  event.preventDefault();
+  localStorage.removeItem("cocktail");
+  console.log("removed cocktail");
+}
+function getIngredients(recipe) {
+  const ingredients = [];
+  for (let i = 1; i <= 15; i++) {
+    const ingredient = recipe[`strIngredient${i}`];
+    const measure = recipe[`strMeasure${i}`];
+    if (ingredient && measure) {
+      ingredients.push(`<li>${measure} ${ingredient}</li>`);
+    } else if (ingredient) {
+      ingredients.push(`<li>${ingredient}</li>`);
+    }
+  }
+  return ingredients.join("");
+}
+function appendRandomCocktailRecipe(event) {
+  event.preventDefault();
+  const apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
+  fetch(apiUrl)
+    .then((response) => response.json())
+    .then(({ drinks: [recipe] }) => {
+      const ingredients = getIngredients(recipe);
+      const recipeHtml = `
+        <div class="card h-24 vw-full flex m-5 p-3">
+          <h2 class="card-title">${recipe.strDrink}</h2>
+          <img src="${recipe.strDrinkThumb}" alt="${recipe.strDrink}" class="card-img">
+          <div class="card-body">
+            <h3 class="card-subtitle">Ingredients:</h3>
+            <ul class="card-list">${ingredients}</ul>
+            <h3 class="card-subtitle">Instructions:</h3>
+            <p class="card-text">${recipe.strInstructions}</p>
+          </div>
+        </div>
+      `;
+      document
+        .querySelector("#drinkrecipe")
+        .appendChild(
+          document.createRange().createContextualFragment(recipeHtml)
+        );
+    });
+}
 
 window.addEventListener("load", setPageActions);
-
-// Cheryl .js
-
-// var now = dayjs();
-// console.log(now);
-// var dtStamp = now.format(‘YYYY-MM-DD’);
-// var dtStart = now.add(1, ‘day’).format(‘YYYYMMDD’);
-// var summary = “Name of recipe”
-// var description = “https://google.com”
-// //Text example for a new ICS file
-// var testIcs = `
-//     BEGIN:VCALENDAR
-//     VERSION:2.0
-//     PRODID:-//hacksw/handcal//NONSGML v1.0//EN
-//     BEGIN:VEVENT
-//     UID:uid1@example.com
-//     DTSTAMP:${dtStamp}T190000Z
-//     ORGANIZER;CN=Dinnerdate:MAILTO:john.doe@example.com
-//     DTSTART:${dtStart}T190000Z
-//     DTEND:${dtStart}T040000Z
-//     SUMMARY:${summary}
-//     DESCRIPTION: ${description}
-//     END:VEVENT
-//     END:VCALENDAR`
-// //This function creates an anchor with an href that generates an ics file. Code copied from Stack Overflow (https://stackoverflow.com/questions/3665115/how-to-create-a-file-in-memory-for-user-to-download-but-not-through-server/18197341#18197341)
-// function download(filename, text) {
-//     var button = document.createElement(‘button’)
-//     var element = document.createElement(‘a’);
-//     element.setAttribute(‘href’, ‘data:text/plain;charset=utf-8,’ + encodeURIComponent(text));
-//     console.log(element);
-//     console.log(testIcs);
-//     element.textContent = “Add to calendar”;
-//     element.setAttribute(‘download’, filename);
-//     document.body.appendChild(button);
-//     button.appendChild(element);
-//   }
-//   download(“test2.ics”, testIcs)
