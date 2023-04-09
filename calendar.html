@@ -1,31 +1,24 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <link rel="stylesheet" type="text/css" href="./assets/style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/dayjs.min.js"></script>
-    <script>
-        window.onload = function() {
-          generateRecipe('https://api.spoonacular.com/recipes/random?number=7&tags=dinner&apiKey=1ba08610419e4c7a9791d166c28d523e');
-        }
-      </script>
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
   </head>
 
   <body id="calendar">
     <header>
-      <h1 class="text-5xl font-extrabold text-left px-5 py-5 font-notable">Dinner Date</h1>
+      <h1 class="text-5xl font-extrabold text-left px-5 py-5 font-notable">
+        Dinner Date
+      </h1>
     </header>
 
     <main>
-      <div class="flex " id="recipes">
-      </div>
-      
-      <div id="cocktail"></div>
-     
+      <div class="flex" id="recipes"></div>
+
+      <div id="drinkrecipe" class="m-5"></div>
     </main>
-    <!-- <script src="./assets/js/calendar.js"></script>
-    <script src="./assets/js/BIGBOISCRIPTING.js"></script> -->
-    <script src = "https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-    <script src="assets/js/calendar.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="assets/js/script.js"></script>
   </body>
 </html>
