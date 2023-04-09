@@ -2,3 +2,39 @@ button {
     border-style: solid;
     box-sizing: border-box;
 }
+
+h1 {
+    
+    font-family: 'Notable', sans-serif; 
+}
+
+.hr-lines{
+    position: relative;
+    max-width: auto;
+    margin: 10px;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+
+  }
+  
+  .hr-lines:before{
+    content:" ";
+    height: 2px;
+    width: 400px;
+    background: black;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+  }
+  
+  .hr-lines:after{
+    content:" ";
+    height: 2px;
+    width: 400px;
+    background: black;
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0;
+  }
