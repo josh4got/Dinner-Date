@@ -15,7 +15,6 @@ function setPageActions(event) {
       // set variables for the buttons
       let cocktail = document.querySelector("#yes");
       let nodrink = document.querySelector("#no");
-      // set variables for the url
       //cuisine type button variables
       var italianBtn = document.querySelector("[data-cuisinetype='italian']");
       var mexicanBtn = document.querySelector("[data-cuisinetype='mexican']");
@@ -73,7 +72,7 @@ function displayCaledar(event) {
 }
 function generateRecipe() {
   console.log("Hello");
-  var urlRequest = `https://api.spoonacular.com/recipes/random?number=1&type=breakfast&cuisine=${cuisineType}&readyInMinutes=${difficultyLevel}&diet=${dietType}&apiKey=${apiKey}`;
+  var urlRequest = `https://api.spoonacular.com/recipes/random?number=7&type=breakfast&cuisine=${cuisineType}&readyInMinutes=${difficultyLevel}&diet=${dietType}&apiKey=${apiKey}`;
 
   fetch(urlRequest, {
     headers: {
@@ -261,16 +260,20 @@ function appendRandomCocktailRecipe(event) {
     .then(({ drinks: [recipe] }) => {
       const ingredients = getIngredients(recipe);
       const recipeHtml = `
-        <div class="card h-24 vw-full flex m-5 p-3">
-          <h2 class="card-title">${recipe.strDrink}</h2>
-          <img src="${recipe.strDrinkThumb}" alt="${recipe.strDrink}" class="card-img">
-          <div class="card-body">
-            <h3 class="card-subtitle">Ingredients:</h3>
-            <ul class="card-list">${ingredients}</ul>
-            <h3 class="card-subtitle">Instructions:</h3>
-            <p class="card-text">${recipe.strInstructions}</p>
+        <div class="h-2/6 w-auto bg-gray-200 mx-5 px-5 flex-col gap-1">
+        <div class="grid grid-cols-2 gap-4">
+        <div class="flex justify-end items-center">
+        <img src="${recipe.strDrinkThumb}" alt="${recipe.strDrink}" class="object-fill max-h-64">
+      </div>
+      <div>
+          <h2 class="text-lg font-bold mb-2">${recipe.strDrink}</h2>
+            <h3 class="text-md font-bold">Ingredients:</h3>
+            <ul class="text-sm mb-2 pb-2">${ingredients}</ul>
+            <h3 class="text-md font-bold">Instructions:</h3>
+            <p class="text-sm mb-2 pb-2">${recipe.strInstructions}</p>
           </div>
         </div>
+      </div>
       `;
       document
         .querySelector("#drinkrecipe")
