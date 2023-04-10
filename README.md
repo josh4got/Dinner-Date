@@ -37,15 +37,12 @@
 
 ### Philip
 
-<li>
-<li>
-<li>
-<li>
-<li>
-<li>
-<li>
-<li>
-<li>
+<li>Read documentation on Spoonacular API to generate random recipes
+<li>Setup javascript for Spoonacular API
+<li>Appending style to calendar HTML page
+<li>Calendar HTML page formatting
+<li>Worked with the rest of the team on bouncing ideas off of them
+
 
 <br>
 
