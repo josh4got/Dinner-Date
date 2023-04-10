@@ -29,10 +29,9 @@ Cheryl:
 <li>Reasearched & Applied fetch to CocktailDB API
 <li>Set up the initial logic switch/case to work with multiple HTML pages
 <li>Wrote JS logic to append a cocktail recipe when selected by a user
-<li>
-<li>
-<li>
 <li>Collaborated with all team members to clean and condense JS code
+<br>
+<br>
 
 ### Philip
 
