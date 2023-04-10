@@ -69,7 +69,8 @@ function displayRecipe(recipeObject) {
   
       // create a button for adding to calendar
       var calendarBtn = document.createElement('button');
-      calendarBtn.className = 'py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mt-2';
+      // calendarBtn.className = 'py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mt-2';
+      calendarBtn.className = 'btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700';
       calendarBtn.innerText = 'Add to calendar';
   
       // add event listener to button for adding to calendar

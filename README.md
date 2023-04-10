@@ -18,6 +18,7 @@ Cheryl:
 <li>Wrote logic to append ical file downloads with appropriate date/time/recipe data to each day's card
 <li>Formatted README
 <li>Created presentation deck 
+<li>Small CSS tweaks
 <br>
 <br>
 
