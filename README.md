@@ -56,4 +56,4 @@
 
 ## Here's a link to <a href="https://github.com/josh4got/Team-Leftovers">our GitHub repository</a>
 
-## Here's a link to <a href = "https://https://josh4got.github.io/Dinner-Date/"> our deployed site</a>
+## Here's a link to <a href = "https://josh4got.github.io/Dinner-Date/"> our deployed site</a>
