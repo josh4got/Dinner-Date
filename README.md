@@ -6,7 +6,7 @@
 
 ## Here's what each of us did:
 
-Cheryl:
+### Cheryl:
 
 <li>Created wireframes, branding, and mockups
 <li>Researched calendar integration
@@ -47,8 +47,16 @@ Cheryl:
 <li>
 <li>
 
+<br>
+
 ## Screenshots of deployed site:
+<hr>
+<br>
+<img src=./assets/images/home.png>
+<img src=./assets/images/calendar.png>
+
+<br>
 
 ## Here's a link to <a href="https://github.com/josh4got/Team-Leftovers">our GitHub repository</a>
 
-## Here's a link to <a href = "https://[ourdeployedsiteaddress]"> our deployed site</a>
+## Here's a link to <a href = "https://https://josh4got.github.io/Dinner-Date/"> our deployed site</a>
