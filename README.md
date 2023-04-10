@@ -1,6 +1,6 @@
 # Dinnerdate
 
-## [Add a description of the project here]
+## This web application can give recipe recommendations for each day of the week based on a user's preferences then lets users add them to their calendar. 
 
 <br>
 
