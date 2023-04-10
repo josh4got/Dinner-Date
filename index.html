@@ -5,42 +5,43 @@
     <title>Recipe Generator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@200&family=Fasthand&family=Inter:wght@500&family=Notable&family=Roboto+Condensed:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
   </head>
-  <body id="Welcome">
+  <body class="bg-gray-50" id="Welcome">
     <header>
-      <h1 class="text-5xl font-extrabold text-center">
-        Weekly Recipe Generator
-      </h1>
+      <h1 class="text-3xl font-extrabold text-left px-5 py-5 font-notable text-white bg-black"><a href=index.html>DinnerDate</a></h1>
     </header>
 
     <main>
       <div class="p-5 m-5">
-        <section class="containter col-6 text-lg text-center" id="instructions">
-          <h2 class="text-4xl font-extrabold">
-            Welcome to the Weekly Recipe Generator!
+        <section class="container col-6 text-lg" id="instructions">
+          <h2 class="text-3xl mb-2 font-extrabold">
+            Leave the dinner plans to us!
           </h2>
           <p>
-            This application will generate a random recipe for you based on the
-            criteria you choose. please select a criteria from below and press
-            generate when ready to see your recipes!
+            Tell us a little about the kind of food you like to cook and we'll create a meal plan for the week.
           </p>
         </section>
         <form
           id="criteria"
           action=""
-          class="col-6 text-lg text-center flex flex-col jusitfy-center items-center"
+          class="col-6 text-lg flex flex-col mt-5"
         >
-          <h2 class="text-4xl font-extrabold">Choose Desired Criteria Here</h2>
+          <h2 class="text-3xl font-extrabold mb-4">What'll it be?</h2>
           <label for="cuisine-type">Cuisine Type:</label>
-          <div class="btn-group flexr">
+          <div class="mt-2 btn-group flexr">
             <button
-              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-4 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
               data-cuisinetype="italian"
             >
               Italian
             </button>
             <button
-              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+              class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-4 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
               data-cuisinetype="mexican"
             >
               Mexican
@@ -53,7 +54,7 @@
             </button>
           </div>
           <label for="dietary-restrictions">Dietary Restrictions:</label>
-          <div class="btn-group flex">
+          <div class="btn-group flex mt-2 mb-2">
             <button
               class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
               data-diettype="vegetarian"
@@ -74,7 +75,7 @@
             </button>
           </div>
           <label for="difficulty-level">Difficulty Level</label>
-          <div class="btn-group flex">
+          <div class="btn-group mt-2 mb-2 flex">
             <button
               class="btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
               data-difficultlevel="easy"
@@ -94,24 +95,24 @@
               Hard
             </button>
           </div>
-          <label for="Cocktail?">Happy Hour?</label>
-          <div id="cocktail" class="btn-group flex">
+          <label for="Cocktail?">Add a happy hour cocktail?</label>
+          <div id="cocktail" class="btn-group flex mt-2">
             <button
               id="yes"
               class="btnC btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             >
-              Click here to add a bonus Cocktail Recipe!
+              Bottoms up!
             </button>
             <button
               id="no"
               class="btnC btn text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             >
-              No thanks!
+              No thanks
             </button>
           </div>
         </form>
         <div
-          class="col-6 text-lg text-center flex flex-col jusitfy-center items-center p-5 m-5"
+          class="col-6 text-lg flex flex-col items-start mt-8"
         >
           <button
             id="generate"
